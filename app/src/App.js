@@ -25,19 +25,19 @@ class App extends Component {
       <div className="App">
         <header>
           <Nav className="MainNav">
-          {localStorage.getItem("jwt") && (<NavItem><Button size="sm" type="button" onClick={this.logout}>
-            Logout
+            {localStorage.getItem("jwt") && (<NavItem><Button size="sm" type="button" onClick={this.logout}>
+              Logout
           </Button></NavItem>)}
-          {localStorage.getItem("jwt") ? (<NavItem>
-            <NavLink to="/main">Quiet Game</NavLink>
-          </NavItem>) : (<NavItem>
-            <p>Quiet Game</p>
-          </NavItem>)}
-          {localStorage.getItem("jwt") ? (<NavItem>
-                  <NavLink to="/classrooms">Scoreboard</NavLink>
-          </NavItem>) : (<NavItem>
-            <p>Scoreboard</p>
-          </NavItem>)}
+            {localStorage.getItem("jwt") ? (<NavItem>
+              <NavLink to="/main">Start Quiet Game</NavLink>
+            </NavItem>) : (<NavItem>
+              <p>Start Quiet Game</p>
+            </NavItem>)}
+            {localStorage.getItem("jwt") ? (<NavItem>
+              <NavLink to="/classrooms">Scoreboard</NavLink>
+            </NavItem>) : (<NavItem>
+              <p>Scoreboard</p>
+            </NavItem>)}
           </Nav>
         </header>
         <Switch>

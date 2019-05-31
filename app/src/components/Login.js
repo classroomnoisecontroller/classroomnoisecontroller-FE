@@ -47,11 +47,11 @@ class Login extends Component {
             <p className="LoginTitle">Teacher Login</p>
             <Form className="LoginForm" onSubmit={this.handleLogin}>
               <FormGroup>
-                <Label for="exampleEmail">Username</Label>
+                <Label for="Username">Username</Label>
                 <Input className="LoginInput" type="text" id="username" value={this.state.username} onChange={this.handleInputChange} />
               </FormGroup>
               <FormGroup>
-                <Label for="examplePassword">Password</Label>
+                <Label for="Password">Password</Label>
                 <Input className="LoginInput" type="password" id="password" value={this.state.password} onChange={this.handleInputChange} />
               </FormGroup>
               <Button>LOG IN</Button>

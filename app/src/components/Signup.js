@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 export default class Signup extends Component {
   state = {
     username: "",
-    password: "",
-    departments: ""
+    password: ""
   };
 
   render() {
@@ -29,15 +28,6 @@ export default class Signup extends Component {
               type="password"
               placeholder="PASSWORD"
             />
-
-            <input
-              value={this.state.departments}
-              onChange={this.handleInputChange}
-              id="departments"
-              type="text"
-              placeholder="DEPARTMENT"
-            />
-
             <button>CREATE ACCOUNT</button>
             <div>
               <p>
