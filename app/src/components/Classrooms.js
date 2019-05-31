@@ -80,7 +80,7 @@ class Classrooms extends Component {
             </thead>
             <tbody>
               {this.state.classrooms.length && (
-                this.state.classrooms.slice(pagestart, pageend).map(({ id, date, classroom_name, teacher, score }) => (
+                this.state.classrooms.reverse().slice(pagestart, pageend).map(({ id, date, classroom_name, teacher, score }) => (
                   <tr key={id}>
                     <td>{moment(date).format('MM/DD/YYYY hh:mm:ss a')}</td>
                     <td>{classroom_name}</td>
