@@ -68,8 +68,11 @@ code {
 }
 
 .Cupcake {
-  height: 50px;
-  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
   border: 1px solid black;
   background-color:white;
   border-radius: 7.5px;
