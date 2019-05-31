@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import axiosWithAuth from "./utils/axiosWithAuth.js";
 import axios from "axios";
 import { Form, FormGroup, Label, Input, Button, Jumbotron } from 'reactstrap';
+import img1 from "../images/1.jpg"
+import img2 from "../images/2.jpg"
+import img3 from "../images/3.jpg"
+import img4 from "../images/4.jpg"
+import img5 from "../images/5.jpg"
+import img6 from "../images/6.jpg"
+import green from "../images/green.jpg"
+import pink from "../images/pink.jpg"
+import yellow from "../images/yellow.jpg"
+import red from "../images/red.jpg"
+import purple from "../images/purple.jpg"
 
 class Classrooms extends Component {
   constructor() {
@@ -31,9 +42,27 @@ class Classrooms extends Component {
 
   render() {
     const renderAnimals = () => {
+      const returnimg = (num) => {
+      switch(num) {
+        case 1:
+          return img1
+        case 2:
+          return img2
+        case 3:
+          return img3
+        case 4:
+          return img4
+        case 5:
+          return img5
+        case 6:
+          return img6
+      }
+    }
       const animalboxarray = []
       for (let i = 1; i <= 10; i++) {
-        animalboxarray.push(<div className="AnimalBox">{this.state.counter >= i && (<img className="AnimalImage" src={process.env.PUBLIC_URL + `/images/${Math.floor(Math.random() * (6)) + 1}.jpg`}></img>)}</div>)
+        const imgnum = Math.floor(Math.random() * (6)) + 1
+        let animalimg = returnimg(imgnum)
+        animalboxarray.push(<div className="AnimalBox">{this.state.counter >= i && (<img className="AnimalImage" src={animalimg}></img>)}</div>)
       }
       return animalboxarray
     }
