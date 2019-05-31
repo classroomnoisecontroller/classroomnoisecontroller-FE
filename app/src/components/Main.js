@@ -10,7 +10,7 @@ class Classrooms extends Component {
       gamestarted: false,
       classroomname: "",
       score: 0,
-      counter: 2,
+      counter: 3,
     };
   }
 
