@@ -30,24 +30,21 @@ class Classrooms extends Component {
     };
   }
 
-  componentDidMount = async () => {
-    const microphone = await navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: false
-    });
+  componentDidMount = () => {
     this.setState(currentState => ({
       animalboxes: currentState.animalboxes.map(() => {
         return Math.floor(Math.random() * (6)) + 1
-      }),
-      microphone: microphone
-    }), () => {this.AudioContext = new window.AudioContext()
-      this.analyser = this.AudioContext.createAnalyser()
-      this.microphone = this.AudioContext.createMediaStreamSource(this.state.microphone)
-      this.microphone.connect(this.analyser)
+      })}))
+    // const microphone = navigator.mediaDevices.getUserMedia({
+    //   audio: true,
+    //   video: false
+    // });
+    // }), () => {this.AudioContext = new window.AudioContext()
+    //   this.analyser = this.AudioContext.createAnalyser()
+    //   this.microphone = this.AudioContext.createMediaStreamSource(this.state.microphone)
+    //   this.microphone.connect(this.analyser)
       // this.count = setInterval(() => this.checkvolume(), 2000)
     }
-      )
-  }
 
 
 
