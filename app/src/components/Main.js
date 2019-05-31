@@ -13,20 +13,20 @@ import pink from "../images/pink.jpg"
 import yellow from "../images/yellow.jpg"
 import red from "../images/red.jpg"
 import purple from "../images/purple.jpg"
+import AudioAnalyser from "./AudioAnalyser.js"
 
 
 class Classrooms extends Component {
   constructor() {
     super();
     this.state = {
-      gamestarted: false,
       classroomname: "",
       score: 0,
       counter: 0,
       cupcake: 0,
       animalboxes: [null, null, null, null, null, null, null, null, null, null],
-      threshhold: 220,
-      microphone: null
+      threshold: "175",
+      audio: null
     };
   }
 
@@ -34,7 +34,8 @@ class Classrooms extends Component {
     this.setState(currentState => ({
       animalboxes: currentState.animalboxes.map(() => {
         return Math.floor(Math.random() * (6)) + 1
-      })}))
+      })
+    }))
     // const microphone = navigator.mediaDevices.getUserMedia({
     //   audio: true,
     //   video: false
@@ -43,11 +44,17 @@ class Classrooms extends Component {
     //   this.analyser = this.AudioContext.createAnalyser()
     //   this.microphone = this.AudioContext.createMediaStreamSource(this.state.microphone)
     //   this.microphone.connect(this.analyser)
-      // this.count = setInterval(() => this.checkvolume(), 2000)
-    }
+    // this.count = setInterval(() => this.checkvolume(), 2000)
+  }
 
 
-
+  async getMicrophone() {
+    const audio = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: false
+    });
+    this.setState({ audio });
+  }
 
 
   handleInputChange = event => {
@@ -58,17 +65,24 @@ class Classrooms extends Component {
   startGame = (e) => {
     e.preventDefault()
     if (this.state.classroomname) {
-      this.setState({
-        gamestarted: true
-      })
+      this.getMicrophone()
     }
     var settimer = setInterval(this.gainPoints, 2000)
   }
 
+  toggleMicrophone = () => {
+    if (this.state.audio) {
+      this.stopMicrophone();
+    } else {
+      this.getMicrophone();
+    }
+  }
+
   classOver = () => {
     if (this.state.score) {
+      this.state.audio.getTracks().forEach(track => track.stop());
       this.setState({
-        gamestarted: false
+        audio: null
       })
       const endpoint = "https://noise-controller.herokuapp.com/api/classrooms"
       const gamesession = {
@@ -78,7 +92,7 @@ class Classrooms extends Component {
       axios.post(endpoint, gamesession)
         .then(res => {
           console.log("LOGIN RESPONSE", res);
-          this.props.history.push("/classrooms");
+          window.setTimeout(() => { this.props.history.push("/classrooms") }, 5000);
         })
         .catch(error => {
           console.error("LOGIN ERROR", error);
@@ -135,7 +149,7 @@ class Classrooms extends Component {
 
   conditionalRender = () => {
     if (this.state.score) {
-      return <p>Loading</p>
+      return <div className="ClassFormContainer"><p className="display-3">Game Over! You were too loud!</p></div>
     }
     else {
       return <div className="ClassFormContainer">
@@ -143,6 +157,29 @@ class Classrooms extends Component {
           <FormGroup>
             <Label for="Classroom">New Classroom Name</Label>
             <Input className="ClassRoomInput" type="text" id="classroomname" value={this.state.classroomname} onChange={this.handleInputChange} />
+            <div className="ThreshholdButtons">
+              <p>Microphone Threshhold</p>
+              <div>
+                <input className="thresholdSelector" type="radio" id="threshold" name="threshold" value="125" onChange={this.handleInputChange} checked={this.state.threshold === "125"} />
+                <label for="either">125</label>
+              </div>
+              <div>
+                <input className="thresholdSelector" type="radio" id="threshold" name="threshold" value="150" onChange={this.handleInputChange} checked={this.state.threshold === "150"} />
+                <label for="mailer">150</label>
+              </div>
+              <div>
+                <input className="thresholdSelector" type="radio" id="threshold" name="threshold" value="175" onChange={this.handleInputChange} checked={this.state.threshold === "175"} />
+                <label for="shipper">175</label>
+              </div>
+              <div>
+                <input className="thresholdSelector" type="radio" id="threshold" name="threshold" value="200" onChange={this.handleInputChange} checked={this.state.threshold === "200"} />
+                <label for="either">200</label>
+              </div>
+              <div>
+                <input className="thresholdSelector" type="radio" id="threshold" name="threshold" value="225" onChange={this.handleInputChange} checked={this.state.threshold === "225"} />
+                <label for="either">225</label>
+              </div>
+            </div>
           </FormGroup>
         </Form>
       </div>
@@ -177,7 +214,7 @@ class Classrooms extends Component {
     }
     return (
       <div className="MainWrapper">
-        {this.state.gamestarted ?
+        {this.state.audio ?
           (<div className="GameWrapper">
             <div className="GameLeft">
               <p className="ScoreDisplay display-4">You have {this.state.score} Points!</p>
@@ -185,6 +222,9 @@ class Classrooms extends Component {
                 {renderAnimals()}
               </div>
               <Button className="EndButton" size="lg" onClick={this.classOver}><i class="far fa-bell"> </i> Class Over <i class="far fa-bell"> </i> </Button>
+              {/* <Button onClick={this.toggleMicrophone}>
+              {this.state.audio ? 'Stop microphone' : 'Get microphone input'}
+            </Button> */}
             </div>
             <div className="GameRight">
               <p className="CupcakeTitle">Cupcakes</p>
@@ -205,6 +245,11 @@ class Classrooms extends Component {
                 (<img src={purple} />)} </div>
               <p>300 points</p>
             </div>
+            {this.state.score && <AudioAnalyser
+              audio={this.state.audio}
+              classOver={this.classOver}
+              threshold={this.state.threshold}
+            />}
           </div>)
           :
           (this.conditionalRender())
