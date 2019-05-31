@@ -7,22 +7,40 @@ class Classrooms extends Component {
   constructor() {
     super();
     this.state = {
+      gamestarted: false,
       classroomname: "",
-      score: 100
+      score: 0
     };
   }
 
+  handleInputChange = event => {
+    const { id, value } = event.target;
+    this.setState({ [id]: value });
+  };
+
+  startGame = (e) => {
+    e.preventDefault()
+    if (this.state.classroomname) {
+      this.setState({
+        gamestarted: true
+      })
+    }
+  }
+
+
+
   render() {
     return (
-      <div className="GameWrapper">
-        {this.state.classroomname ?
-          (<div></div>)
+      <div className="MainWrapper">
+        {this.state.gamestarted ?
+          (<div className="GameWrapper">
+          </div>)
           :
           (<div className="ClassFormContainer">
-            <Form>
+            <Form className="ClassForm" onSubmit={this.startGame}>
               <FormGroup>
-                <Label for="exampleEmail">New Classroom Name</Label>
-                <Input className="LoginInput" type="text" id="username" value={this.state.username} onChange={this.handleInputChange} />
+                <Label for="Classroom">New Classroom Name</Label>
+                <Input className="ClassRoomInput" type="text" id="classroomname" value={this.state.classroomname} onChange={this.handleInputChange} />
               </FormGroup>
             </Form>
           </div>)
