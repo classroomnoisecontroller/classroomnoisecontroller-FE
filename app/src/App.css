@@ -14,6 +14,21 @@ code {
     monospace;
 }
 
+.GameWrapper {
+  margin: 10px 1%;
+  border: 4px double #333333;
+  background-color: white;
+  border-radius: 15px;
+  opacity: 0.6;
+}
+
+.ClassFormContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+}
+
 .App {
   text-align: center;
 }
