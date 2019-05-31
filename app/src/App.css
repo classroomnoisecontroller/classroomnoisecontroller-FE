@@ -38,9 +38,31 @@ code {
   margin: 8px 0;
 }
 
+.TableTitleAndPages {
+  margin-left: 4%;
+  display: flex;
+  width: 95%;
+  justify-content: center
+
+  
+}
+
 .LoginTitle {
   font-size: 26px;
-  margin: 12px 0;
+  margin: 12px 0px;
+}
+
+.Hidden {
+  visibility: hidden;
+}
+
+.TableTitle {
+  font-size: 26px;
+  margin: 12px 40px;
+}
+
+.PageNumber {
+  margin-left: 3%;
 }
 
 .MainNav {
