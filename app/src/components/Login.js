@@ -62,7 +62,7 @@ class Login extends Component {
             <Link to="/signup"><Button>Create an Account</Button></Link>
           </div></div>) :
           (<div><p className="LoginTitle RegisterOr">You are already Logged In!</p>
-          <Link>Click here to start a microphone game</Link></div>
+          <Link to="/main">Click here to start a microphone game</Link></div>
           )}
           
       </div>
