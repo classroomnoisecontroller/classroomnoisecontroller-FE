@@ -5,7 +5,7 @@ import { NavLink, Link, withRouter } from "react-router-dom";
 import { Table, Button } from 'reactstrap';
 import moment from "moment";
 
-class Classrooms extends Component {
+class Classrooms extends Component { 
   constructor() {
     super();
     this.state = {

@@ -4,7 +4,7 @@ import { Nav, NavItem, Button } from "reactstrap"
 import axios from "axios";
 import Login from "./components/Login.js";
 import Signup from "./components/Signup.js";
-import Main from "./components/Main.js"
+import Main from "./components/Main.js" 
 import Classrooms from "./components/Classrooms.js";
 import "./reset.css";
 import "./App.css";

@@ -6,7 +6,7 @@ import { Form, FormGroup, Label, Input, Button, Jumbotron } from 'reactstrap';
 class Classrooms extends Component {
   constructor() {
     super();
-    this.state = {
+    this.state = { 
       gamestarted: false,
       classroomname: "",
       score: 0,
