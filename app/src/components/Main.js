@@ -13,7 +13,7 @@ class Classrooms extends Component {
       counter: 3,
     };
   }
-
+ 
   handleInputChange = event => {
     const { id, value } = event.target;
     this.setState({ [id]: value });

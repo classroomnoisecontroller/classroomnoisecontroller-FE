@@ -12,7 +12,7 @@ class Classrooms extends Component {
       classrooms: [],
       page: 1
     };
-  }
+  } 
 
   componentDidMount() {
     console.log("hihihi");

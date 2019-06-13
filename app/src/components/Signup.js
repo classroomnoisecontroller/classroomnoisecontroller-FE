@@ -8,7 +8,7 @@ export default class Signup extends Component {
     password: ""
   };
 
-  render() {
+  render() { 
     return (
       <div>
         <div>

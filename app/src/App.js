@@ -14,7 +14,7 @@ axios.defaults.baseURL =
 
 class App extends Component {
   logout = e => {
-    e.preventDefault();
+    e.preventDefault(); 
     localStorage.removeItem("jwt");
     localStorage.removeItem("username");
     this.props.history.push("/");
