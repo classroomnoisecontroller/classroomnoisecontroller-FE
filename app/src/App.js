@@ -20,7 +20,7 @@ class App extends Component {
     this.props.history.push("/");
   };
 
-  render() {
+  render() { 
     return (
       <div className="App">
         <header>
