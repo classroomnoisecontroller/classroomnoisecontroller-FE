@@ -48,7 +48,7 @@ class App extends Component {
         </Switch>
         <div className="Footer">
           <p className="TestAccount">Test Account | Login: test | Password: password</p>
-          <p>Favicon Provided by Shannon E Thomas at https://www.toicon.com/icons/pictogram_use.</p>
+          <p>Favicon Provided by Shannon E Thomas at <a href="https://www.toicon.com/">https://www.toicon.com/</a></p>
         </div>
       </div>
     );
