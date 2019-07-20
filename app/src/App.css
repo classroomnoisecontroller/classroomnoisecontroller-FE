@@ -28,6 +28,23 @@ code {
   min-height: 85vh;
 }
 
+.Footer {
+  text-align: center;
+  margin: 150px auto 50px auto;
+  border: 4px double #333333;
+  background-color:rgba(255, 255, 255, 0.6);
+  border-radius: 15px;
+  width: 50%;
+  padding: 15px;
+}
+
+.TestAccount {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+
+
 .GameLeft {
   margin: 10px 0;
   width: 80%;

@@ -46,6 +46,10 @@ class App extends Component {
           <Route path="/main" component={Main} />
           <Route path="/classrooms" component={Classrooms} />
         </Switch>
+        <div className="Footer">
+          <p className="TestAccount">Test Account | Login: test | Password: password</p>
+          <p>Favicon Provided by Shannon E Thomas at https://www.toicon.com/icons/pictogram_use.</p>
+        </div>
       </div>
     );
   }
